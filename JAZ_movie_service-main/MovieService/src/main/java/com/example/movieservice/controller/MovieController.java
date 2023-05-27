@@ -50,8 +50,13 @@ public class MovieController {
     }
 
     @PutMapping("/movies/{id}/rent")
-    public void rentMovie(@PathVariable("id") Long id) throws MovieNotFoundException {
+    public void updateMovieAvailability(@PathVariable("id") Long id) throws MovieNotFoundException {
         movieService.rentMovie(id);
+    }
+
+    @PutMapping("/movies/{id}/return")
+    public void returnMovie(@PathVariable("id") Long id) throws MovieNotFoundException {
+        movieService.returnMovie(id);
     }
 
     @DeleteMapping("/movies/{id}")

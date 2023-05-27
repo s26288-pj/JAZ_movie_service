@@ -4,9 +4,7 @@ import com.example.movieservice.exception.MovieNotFoundException;
 import com.example.movieservice.model.Movie;
 import com.example.movieservice.repository.MovieRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MovieService {
@@ -40,7 +38,13 @@ public class MovieService {
 
     public void rentMovie(Long id) throws MovieNotFoundException {
         Movie movie = findMovieByID(id);
-        movie.setAvailable(!movie.isAvailable());
+        movie.setAvailable(false);
+        movieRepository.save(movie);
+    }
+
+    public void returnMovie(Long id) throws MovieNotFoundException {
+        Movie movie = findMovieByID(id);
+        movie.setAvailable(true);
         movieRepository.save(movie);
     }
 
